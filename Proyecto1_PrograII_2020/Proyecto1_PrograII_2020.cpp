@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	cout << "Testing" << endl;
+	cout << "Probando el control de cambios" << endl;
 	return 0;
 }
 
