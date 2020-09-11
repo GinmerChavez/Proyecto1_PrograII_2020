@@ -2,8 +2,7 @@
 //
 
 #include <iostream>
-#include "fecha.h"
-#include "ProductoPerecedero.h"
+
 
 using namespace std;
 
