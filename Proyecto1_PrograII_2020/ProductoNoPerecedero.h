@@ -13,6 +13,5 @@ public:
 
 	// Inherited via Producto
 	virtual int getPrecio() override;
-	virtual int getPrecioBase() override;
 
 };

@@ -6,14 +6,13 @@
 class ProductoPerecedero : public Producto
 {
 private:
-	fecha* fechaDeVencimiento;
+	Fecha* fechaDeVencimiento;
 
 public:
-	ProductoPerecedero(string, int, int, fecha*);
-	virtual toString();
+	ProductoPerecedero(string, int, int, Fecha*);
+	virtual string toString();
 	virtual ~ProductoPerecedero();
 
 	// Inherited via Producto
-	virtual int getPrecioBase() override;
 	virtual int getPrecio() override;
 };

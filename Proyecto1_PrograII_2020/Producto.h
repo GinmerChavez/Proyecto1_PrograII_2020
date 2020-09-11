@@ -19,7 +19,6 @@ public:
 
 	string getNombre() const;
 	void setNombre(string nombre);
-	virtual int getPrecioBase() = 0;
 	virtual int getPrecio() = 0;
 	void setPrecioBase(int precio);
 	int getCantidad() const;

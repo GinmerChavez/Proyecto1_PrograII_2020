@@ -139,7 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="fecha.cpp" />
+    <ClCompile Include="Producto.cpp" />
+    <ClCompile Include="ProductoNoPerecedero.cpp" />
+    <ClCompile Include="ProductoPerecedero.cpp" />
     <ClCompile Include="Proyecto1_PrograII_2020.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fecha.h" />
+    <ClInclude Include="Producto.h" />
+    <ClInclude Include="ProductoNoPerecedero.h" />
+    <ClInclude Include="ProductoPerecedero.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

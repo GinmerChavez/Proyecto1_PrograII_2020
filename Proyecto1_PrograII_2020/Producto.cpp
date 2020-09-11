@@ -28,7 +28,7 @@ string Producto::toString()
 {
 	stringstream s;
 	s << "Nombre del producto: " << this->nombre << endl;
-	s << "Precio sin descuento: " << this->precio << endl;
+	s << "Precio base: " << this->precio << endl;
 	s << "Cantidad en la máquina: " << this->cantidad << endl;
 	return s.str();
 }

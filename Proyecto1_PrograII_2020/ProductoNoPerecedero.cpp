@@ -14,14 +14,10 @@ string ProductoNoPerecedero::toString()
     stringstream s;
     s << Producto::toString();
     s << "Porcentaje de descuento: " << this->porcentajeDeDescuento << endl;
-    s << "Precio con descuento: " << this->getPrecio() << endl;
+    s << "Precio final: " << this->getPrecio() << endl;
     return s.str();
 }
 
-int ProductoNoPerecedero::getPrecioBase()
-{
-    return this->precio;
-}
 
 int ProductoNoPerecedero::getPrecio()
 {
