@@ -19,6 +19,6 @@ public:
 	int getDinero();
 	~MonederoElectronico();
 public:
-	int Monedas[5] = {100, 500, 1000, 2000, 5000};
+	int Monedas[5] = {50, 100, 500, 1000, 2000};
 
 };
