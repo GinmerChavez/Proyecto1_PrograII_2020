@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="fecha.cpp" />
+    <ClCompile Include="MonederoElectronico.cpp" />
     <ClCompile Include="Producto.cpp" />
     <ClCompile Include="ProductoNoPerecedero.cpp" />
     <ClCompile Include="ProductoPerecedero.cpp" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fecha.h" />
+    <ClInclude Include="MonederoElectronico.h" />
     <ClInclude Include="Producto.h" />
     <ClInclude Include="ProductoNoPerecedero.h" />
     <ClInclude Include="ProductoPerecedero.h" />
