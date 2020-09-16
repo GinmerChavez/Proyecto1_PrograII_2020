@@ -10,6 +10,7 @@ class MonederoElectronico
 private:
 	int dinero;
 	int *Vuelto;
+	int Monedas[6] = { 50, 100, 500, 1000, 2000, 5000 };
 public:
 	MonederoElectronico();
 	MonederoElectronico(int dinero);
@@ -18,7 +19,4 @@ public:
 	void setDinero(int dinero);
 	int getDinero();
 	~MonederoElectronico();
-public:
-	int Monedas[5] = {100, 500, 1000, 2000, 5000};
-
 };
