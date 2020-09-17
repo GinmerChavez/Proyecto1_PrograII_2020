@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
 #include <sstream>
+#include "Colecciones/ObjetoBase.h"
 
 using namespace std;
 
-class Producto
+class Producto : public ObjetoBase
 {
 protected:
 	string nombre;

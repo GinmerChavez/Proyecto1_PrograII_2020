@@ -142,6 +142,7 @@ void Maquina::retirarDinero(int cantidad)
 string Maquina::realizarCompra(string id, int cantidad, int montoPago)
 {
     //Aqui hace falta una validacion para entero y una validacion para string
+    stringstream s;
     try
     {
         int dineroActual = this->monedero->getDinero();
@@ -154,8 +155,8 @@ string Maquina::realizarCompra(string id, int cantidad, int montoPago)
                 {
                     this->disminuirProvisiones(id, cantidad);
                     this->monedero->setDinero(dineroActual + montoPago);
-                    cout << "La compra se ha efectuado satisfactoriamente." << endl;
-                    this->monedero->desgloceVuelto();
+                    s << "La compra se ha efectuado satisfactoriamente." << endl;
+                    s << this->monedero->desgloceVuelto();
                 }
                 else
                 {
@@ -173,4 +174,5 @@ string Maquina::realizarCompra(string id, int cantidad, int montoPago)
         cerr << "Ocurrio un problema al tratar de realizar la compra. ";
         cerr << e.what() << endl;
     }
+    return s.str();
 }
