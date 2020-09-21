@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include "Colecciones/ObjetoBase.h"
+#include "fecha.h"
 
 using namespace std;
 
@@ -24,8 +25,7 @@ public:
 	void setPrecioBase(int precio);
 	int getCantidad() const;
 	void setCantidad(int cantidad);
-
 	virtual ~Producto();
-	virtual string toString();
+	string toString();
 };
 

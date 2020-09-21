@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="fecha.cpp" />
     <ClCompile Include="Maquina.cpp" />
+    <ClCompile Include="MenuAdministrador.cpp" />
+    <ClCompile Include="MenuCobro.cpp" />
+    <ClCompile Include="MenuPrincipal.cpp" />
     <ClCompile Include="MonederoElectronico.cpp" />
     <ClCompile Include="Producto.cpp" />
     <ClCompile Include="ProductoNoPerecedero.cpp" />
@@ -148,10 +151,14 @@
     <ClCompile Include="Proyecto1_PrograII_2020.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Colecciones\ObjetoBase.h" />
     <ClInclude Include="fecha.h" />
     <ClInclude Include="IMaquinaAdministradora.h" />
     <ClInclude Include="IMaquinaVendedora.h" />
     <ClInclude Include="Maquina.h" />
+    <ClInclude Include="MenuAdministrador.h" />
+    <ClInclude Include="MenuCobro.h" />
+    <ClInclude Include="MenuPrincipal.h" />
     <ClInclude Include="MonederoElectronico.h" />
     <ClInclude Include="Producto.h" />
     <ClInclude Include="ProductoNoPerecedero.h" />

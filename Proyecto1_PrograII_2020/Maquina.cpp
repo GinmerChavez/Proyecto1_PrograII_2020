@@ -176,3 +176,14 @@ string Maquina::realizarCompra(string id, int cantidad, int montoPago)
     }
     return s.str();
 }
+
+Producto* Maquina::mostrarProducto(string id)
+{
+    Producto* p = this->consultar(id);
+    return p;
+
+}
+
+
+
+

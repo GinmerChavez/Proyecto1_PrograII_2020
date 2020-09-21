@@ -47,4 +47,7 @@ public:
 	// Inherited via IMaquinaVendedora
 	virtual string realizarCompra(string id, int cantidad, int montoPago) override;
 
+	virtual Producto* mostrarProducto(string id) override;
+
+
 };
