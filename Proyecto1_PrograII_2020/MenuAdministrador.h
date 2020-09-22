@@ -17,7 +17,7 @@ private:
 	void agregarProvisiones();
 	void disminuirProvisiones();
 	void borrarProducto();
-	string consultar();
+	void consultar();
 	void ingresarDinero();
 	void retirarDinero();
 	Producto* crearProducto();

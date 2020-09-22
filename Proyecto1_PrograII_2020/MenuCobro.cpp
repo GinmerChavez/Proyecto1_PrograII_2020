@@ -100,7 +100,7 @@ void MenuCobro::subMenuCompra(string id)
 		cout << "Se entrega " << cantidad << " unidades de " << this->maquinaVendedora->mostrarProducto(id)->getNombre() << endl;
 		cout << "Vuelto: " << vuelto << endl;
 		cout << "La compra se efectuo exitosamente" <<endl;
-		cout << this->retornarMonedero()->desgloceVuelto();
+		//cout << this->retornarMonedero()->desgloceVuelto();
 	}
 	else
 	{	

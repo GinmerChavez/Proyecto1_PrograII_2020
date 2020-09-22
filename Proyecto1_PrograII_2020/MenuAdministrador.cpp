@@ -94,29 +94,35 @@ void MenuAdministrador::borrarProducto()
 	cout << "Ingrese el nombre del producto que desea borrar" << endl;
 	cin >> id;
 	this->maquinaAdministradora->borrar(id);
+	system("pause");
 }
 
-string MenuAdministrador::consultar()
+void MenuAdministrador::consultar()
 {
+
 	string id;
 	cout << "Ingrese el nombre del producto a consultar" << endl;
 	cin >> id;
-	return this->maquinaAdministradora->consultar(id)->toString();
+	cout << this->maquinaAdministradora->consultar(id)->toString() << endl;
+	system("pause");
 }
 
 void MenuAdministrador::ingresarDinero()
 {
 	int dinero = 0;
 	cout << "Cuanto dinero desea ingresar a la maquina?" << endl;
+	cin >> dinero;
 	this->maquinaAdministradora->ingresarDinero(dinero);
-
+	//system("pause");
 }
 
 void MenuAdministrador::retirarDinero()
 {
 	int dinero = 0;
 	cout << "Cuanto dinero desea retirar de la maquina?" << endl;
+	cin >> dinero;
 	this->maquinaAdministradora->retirarDinero(dinero);
+	system("pause");
 }
 	
 Producto* MenuAdministrador::crearProducto()

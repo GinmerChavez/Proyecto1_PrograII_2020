@@ -15,8 +15,8 @@ private:
 public:
 	MonederoElectronico();
 	MonederoElectronico(int dinero);
-	int calculaVueltoMinimo();
-	string desgloceVuelto();
+	int calculaVueltoMinimo(int vuelto);
+	string desgloceVuelto(int vuelto);
 	void setDinero(int dinero);
 	int getDinero();
 	~MonederoElectronico();

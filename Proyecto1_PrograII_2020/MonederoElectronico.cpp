@@ -24,19 +24,18 @@ MonederoElectronico::MonederoElectronico(int dinero)
 	}
 }
 
-int MonederoElectronico::calculaVueltoMinimo()
+int MonederoElectronico::calculaVueltoMinimo(int vuelto)
 {
 	
 	int count = 0;
 	int size = sizeof(Monedas) / sizeof(Monedas[0]);
 	for (int i = size-1; i >=0; i--)
 	{
-		int nDinero = this->getDinero();
+		int nDinero = vuelto;
 		while (nDinero >= Monedas[i])
 		{
 
 			nDinero -= Monedas[i];
-			this->setDinero(nDinero);
 			this->Vuelto[count] = Monedas[i];
 			count++;
 		}
@@ -46,9 +45,9 @@ int MonederoElectronico::calculaVueltoMinimo()
 	return count;
 }
 
-string MonederoElectronico::desgloceVuelto()
+string MonederoElectronico::desgloceVuelto(int vuelto)
 {
-	int numeroMonedas = this->calculaVueltoMinimo();
+	int numeroMonedas = this->calculaVueltoMinimo(vuelto);
 	stringstream s;
 	s << "El cambio es: " << endl;
 	for (int i = 0; i < numeroMonedas; i++)

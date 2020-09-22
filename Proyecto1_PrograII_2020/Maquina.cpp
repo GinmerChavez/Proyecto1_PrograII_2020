@@ -153,10 +153,11 @@ string Maquina::realizarCompra(string id, int cantidad, int montoPago)
             {
                 if (montoPago >= productoBuscado->getCantidad() * productoBuscado->getPrecio())
                 {
+                    int vuelto = montoPago - productoBuscado->getPrecio()* cantidad;
                     this->disminuirProvisiones(id, cantidad);
                     this->monedero->setDinero(dineroActual + montoPago);
                     s << "La compra se ha efectuado satisfactoriamente." << endl;
-                    s << this->monedero->desgloceVuelto();
+                    s << this->monedero->desgloceVuelto(vuelto);
                 }
                 else
                 {
