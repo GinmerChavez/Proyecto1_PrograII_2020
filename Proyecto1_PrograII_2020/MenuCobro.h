@@ -1,5 +1,6 @@
 #pragma once
 #include"IMaquinaVendedora.h"
+#include "MonederoElectronico.h"
 
 class MenuCobro
 {
@@ -12,7 +13,7 @@ public:
 private:
 	char mostrarOpciones();
 	string mostrarProductos();
-	string seleccionarProducto();
-	string subMenuCompra(string id);
-
+	void seleccionarProducto();
+	void subMenuCompra(string id);
+	MonederoElectronico* retornarMonedero();
 };

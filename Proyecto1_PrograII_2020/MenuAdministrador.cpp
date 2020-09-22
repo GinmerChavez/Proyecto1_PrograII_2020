@@ -70,9 +70,9 @@ void MenuAdministrador::agregarProvisiones()
 {
 	string id;
 	int provisiones;
-	cout << "Digite el id del producto al cual desea agregarle provisiones" << endl;
+	cout << "Ingrese el nombre del producto al cual desea agregarle provisiones" << endl;
 	cin >> id;
-	cout << "Cuanta cantidad de provisiones desea agregar" << endl;
+	cout << "Ingrese la cantidad de provisiones que desea agregar" << endl;
 	cin >> provisiones;
 	this->maquinaAdministradora->agregarProvisiones(id, provisiones);
 }
@@ -81,9 +81,9 @@ void MenuAdministrador::disminuirProvisiones()
 {
 	string id;
 	int provisiones;
-	cout << "Digite el id del producto al cual desea quitarle provisiones" << endl;
+	cout << "Ingrese el nombre del producto al cual desea quitarle provisiones" << endl;
 	cin >> id;
-	cout << "Cuanta cantidad de provisiones desea quitar" << endl;
+	cout << "Ingrese la cantidad de provisiones que desea quitar" << endl;
 	cin >> provisiones;
 	this->maquinaAdministradora->disminuirProvisiones(id, provisiones);
 }
@@ -91,7 +91,7 @@ void MenuAdministrador::disminuirProvisiones()
 void MenuAdministrador::borrarProducto()
 {
 	string id; 
-	cout << "Digite el id del producto que desea borrar" << endl;
+	cout << "Ingrese el nombre del producto que desea borrar" << endl;
 	cin >> id;
 	this->maquinaAdministradora->borrar(id);
 }
@@ -99,23 +99,23 @@ void MenuAdministrador::borrarProducto()
 string MenuAdministrador::consultar()
 {
 	string id;
-	cout << "Digite el ID del producto a consultar" << endl;
+	cout << "Ingrese el nombre del producto a consultar" << endl;
 	cin >> id;
 	return this->maquinaAdministradora->consultar(id)->toString();
 }
 
 void MenuAdministrador::ingresarDinero()
 {
-	int dinero;
-	cout << "Cuanto dinero desea ingresar?" << endl;
+	int dinero = 0;
+	cout << "Cuanto dinero desea ingresar a la maquina?" << endl;
 	this->maquinaAdministradora->ingresarDinero(dinero);
 
 }
 
 void MenuAdministrador::retirarDinero()
 {
-	int dinero;
-	cout << "Cuanto dinero desea ingresar?" << endl;
+	int dinero = 0;
+	cout << "Cuanto dinero desea retirar de la maquina?" << endl;
 	this->maquinaAdministradora->retirarDinero(dinero);
 }
 	
@@ -123,6 +123,7 @@ Producto* MenuAdministrador::crearProducto()
 {
 	string nombre;
 	int precio, cantidad;
+	Producto* prod = nullptr;
 	cout << "Nombre: " << endl;
 	cin >> nombre;
 	cout << "Precio: " << endl;
@@ -143,11 +144,9 @@ Producto* MenuAdministrador::crearProducto()
 		cin >> mes;
 		cout << "Año: " << endl;
 		cin >> anno;
-		fechavencimiento = new Fecha(dia, mes, anno); //hacer error handling para formato de fecha
+		fechavencimiento = new Fecha(dia, mes, anno); //hacer error handling para formato de fecha (validacion de enteros)
 
-		Producto* prod = new ProductoPerecedero(nombre, precio, cantidad, fechavencimiento);
-
-		return prod;
+		prod = new ProductoPerecedero(nombre, precio, cantidad, fechavencimiento);
 	}
 	if (opcion == 2)
 	{
@@ -155,9 +154,8 @@ Producto* MenuAdministrador::crearProducto()
 		cout << "Digite porcentaje de descuento: " << endl;
 		cin >> porcentajeDescuento;
 
-		Producto* prod = new ProductoNoPerecedero(nombre, precio, cantidad, porcentajeDescuento);
-		return prod;
+		prod = new ProductoNoPerecedero(nombre, precio, cantidad, porcentajeDescuento);
+		
 	}
-
-
+	return prod;
 }

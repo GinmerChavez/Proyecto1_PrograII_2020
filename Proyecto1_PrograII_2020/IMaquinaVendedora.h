@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include"Producto.h"
+#include "MonederoElectronico.h"
 using namespace std;
 
 class IMaquinaVendedora
@@ -11,4 +12,5 @@ public:
 	virtual string realizarCompra(string id, int cantidad, int montoPago) = 0;
 	virtual string toString() = 0;
 	virtual Producto* mostrarProducto(string id) = 0;
+	virtual MonederoElectronico* retornarMonedero() = 0;
 };

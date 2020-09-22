@@ -2,12 +2,12 @@
 
 MenuCobro::MenuCobro(IMaquinaVendedora* maquinaVendedora)
 {
-	this->maquinaVendedora;
+	this->maquinaVendedora = maquinaVendedora;
 }
 
 void MenuCobro::invocarMenu()
 {
-	const char opcionSalida = '4';
+	const char opcionSalida = '3';
 	char opcion;
 	do
 	{
@@ -20,11 +20,25 @@ void MenuCobro::invocarMenu()
 		case '2':
 			this->seleccionarProducto();
 			break;
-		case '3':
-
+		case opcionSalida:
+			break;
+		default:
+			cerr << "Opcion invalida, digite otra vez" << endl;
 		}
 	}
 	while (opcion != opcionSalida);
+}
+
+char MenuCobro::mostrarOpciones()
+{
+	char opcion;
+	system("cls");
+	cout << "Menu Cobro - Seleccionar una opcion:" << endl;
+	cout << "1) Mostrar productos" << endl;
+	cout << "2) Seleccionar producto" << endl;
+	cin >> opcion;
+	system("cls");
+	return opcion;
 }
 
 string MenuCobro::mostrarProductos()
@@ -32,53 +46,72 @@ string MenuCobro::mostrarProductos()
 	return this->maquinaVendedora->toString();
 }
 
-string MenuCobro::seleccionarProducto() // hay que hacer excepcion 
+void MenuCobro::seleccionarProducto() // hay que hacer excepcion 
 {
-	string id;
-	cout << "Digite el ID del producto que desea escoger: " << endl;
-	cin >> id;
-	cout << "Producto: " << endl;
-	cout << this->maquinaVendedora->mostrarProducto(id)->toString() << endl;
-	cout << "Si desea comprar este producto presione 1 y para salir presione 2" << endl;
-	int opcion;
-	cin >> opcion; 
-	if (opcion == 1)
+	try
 	{
-		system("CLS");
-		this->subMenuCompra(id);
-		return "Compra hecha";
-	}
-	else
-	{
-		return "Fallo en compra";
-	}
+		string id;
+		cout << "Ingrese el nombre del producto que desea escoger: " << endl;
+		cin >> id;
+		cout << "Producto: " << endl;
+		cout << this->maquinaVendedora->mostrarProducto(id)->toString() << endl;
+		char opcion;
+		cout << "Presione 1, si desea confirmar la compra de este producto." << endl;
+		cout << "Presione 2, para salir al menu de cobro." << endl;
+		cin >> opcion;
+		const char opcionSalida = '2';
+		do
+		{
+			switch (opcion)
+			{
+			case '1':
+				system("cls");
+				this->subMenuCompra(id);
+				cout << "Producto comprado satisfactoriamente.";
+				break;
+			case opcionSalida:
+				break;
+			default:
+				cerr << "Opcion invalida, digite otra vez" << endl;
+			}
 
+		} while (opcion != opcionSalida);
+	}
+	catch (exception& e)
+	{
+		cerr << "Ocurrio un problema al tratar de Seleccionar un producto." << endl;
+		cerr << e.what() << endl;
+	}
 }
 
-string MenuCobro::subMenuCompra(string id)
+void MenuCobro::subMenuCompra(string id)
 {
-	
 	int monto, cantidad, precio, vuelto;
-	
 	cout << "Cuantas unidades desea comprar?" << endl;
 	cin >> cantidad;
 	cout << "Digite el monto con el que desea pagar" << endl;
 	cin >> monto;
 	precio = this->maquinaVendedora->mostrarProducto(id)->getPrecio();
-	if (monto < precio*cantidad)
+	int total = precio * cantidad;
+	if (monto >= total)
 	{
-		cout << "Monto insuficiente, necesita: " << monto - precio << "mas para realizar la compra" << endl;
-		return "No se pudo realizar compra"
+		this->maquinaVendedora->realizarCompra(id, cantidad, monto);
+		vuelto = monto - precio * cantidad;
+		cout << "Se entrega " << cantidad << " unidades de " << this->maquinaVendedora->mostrarProducto(id)->getNombre() << endl;
+		cout << "Vuelto: " << vuelto << endl;
+		cout << "La compra se efectuo exitosamente" <<endl;
+		cout << this->retornarMonedero()->desgloceVuelto();
 	}
 	else
 	{	
-		this->maquinaVendedora->realizarCompra(id, cantidad, monto);
-		vuelto = monto - precio * cantidad;
-		cout << "se entrega" << this->maquinaVendedora->mostrarProducto(id)->getNombre() << endl;
-		cout << "Vuelto: " << vuelto << endl;
-		return "Se efectuo compra exitosamente" 
-
+		cout << "Monto insuficiente, necesita " << total - monto << " colones mas para realizar la compra" << endl;
+		cout << "No se pudo realizar la compra.";
 	}
+}
+
+MonederoElectronico* MenuCobro::retornarMonedero()
+{
+	return this->maquinaVendedora->retornarMonedero();
 }
 
 

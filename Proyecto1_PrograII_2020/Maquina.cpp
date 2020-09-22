@@ -179,9 +179,23 @@ string Maquina::realizarCompra(string id, int cantidad, int montoPago)
 
 Producto* Maquina::mostrarProducto(string id)
 {
-    Producto* p = this->consultar(id);
-    return p;
+    try
+    {
+        Producto* p;
+        p = this->consultar(id);
+        return p;
+    }
+    catch(exception& e)
+    {
+        cerr << "Ocurrio un problema al tratar de mostrar un producto." << endl;
+        cerr << e.what() << endl;
+    }
+    throw invalid_argument("Ocurrio un problema al mostrar un producto.");
+}
 
+MonederoElectronico* Maquina::retornarMonedero()
+{
+    return this->monedero;
 }
 
 

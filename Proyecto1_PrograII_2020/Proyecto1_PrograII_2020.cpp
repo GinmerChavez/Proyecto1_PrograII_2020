@@ -2,15 +2,13 @@
 //
 
 #include <iostream>
-
+#include "Bootstrapper.h"
 
 using namespace std;
 
 int main()
 {
-
-
-    return 0;
+    Bootstrapper::correrAplicacion();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

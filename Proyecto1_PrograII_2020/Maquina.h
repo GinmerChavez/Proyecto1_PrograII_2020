@@ -7,7 +7,7 @@
 #include "Colecciones/IList.h"
 
 
-class Maquina : public IMaquinaAdministradora, IMaquinaVendedora
+class Maquina : public IMaquinaAdministradora, public IMaquinaVendedora
 {
 private:
 	int identificador;
@@ -49,5 +49,5 @@ public:
 
 	virtual Producto* mostrarProducto(string id) override;
 
-
+	virtual MonederoElectronico* retornarMonedero() override;
 };
