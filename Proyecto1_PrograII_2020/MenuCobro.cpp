@@ -41,9 +41,11 @@ char MenuCobro::mostrarOpciones()
 	return opcion;
 }
 
-string MenuCobro::mostrarProductos()
+void MenuCobro::mostrarProductos()
 {
-	return this->maquinaVendedora->toString();
+
+	cout << this->maquinaVendedora->toString() << endl;
+	system("pause");
 }
 
 void MenuCobro::seleccionarProducto() // hay que hacer excepcion 

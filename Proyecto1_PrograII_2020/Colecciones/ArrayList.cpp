@@ -129,6 +129,7 @@ string ArrayList::toString()
 	{
 		if (this->datos[i])
 		{
+
 			s << this->datos[i]->toString() << endl;
 		}
 	}

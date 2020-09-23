@@ -60,7 +60,7 @@ char MenuAdministrador::mostrarOpciones()
 	return opcion;
 }
 
-void MenuAdministrador::insertar()
+void MenuAdministrador::insertar() //funciona
 {
 	Producto* producto = crearProducto();
 	this->maquinaAdministradora->insertar(producto);
@@ -96,8 +96,8 @@ void MenuAdministrador::borrarProducto()
 	this->maquinaAdministradora->borrar(id);
 	system("pause");
 }
-
-void MenuAdministrador::consultar()
+ 
+void MenuAdministrador::consultar() //funciona
 {
 
 	string id;
@@ -107,7 +107,7 @@ void MenuAdministrador::consultar()
 	system("pause");
 }
 
-void MenuAdministrador::ingresarDinero()
+void MenuAdministrador::ingresarDinero() //funciona
 {
 	int dinero = 0;
 	cout << "Cuanto dinero desea ingresar a la maquina?" << endl;
@@ -116,7 +116,7 @@ void MenuAdministrador::ingresarDinero()
 	//system("pause");
 }
 
-void MenuAdministrador::retirarDinero()
+void MenuAdministrador::retirarDinero() //funciona
 {
 	int dinero = 0;
 	cout << "Cuanto dinero desea retirar de la maquina?" << endl;
@@ -125,7 +125,7 @@ void MenuAdministrador::retirarDinero()
 	system("pause");
 }
 	
-Producto* MenuAdministrador::crearProducto()
+Producto* MenuAdministrador::crearProducto() //funciona
 {
 	string nombre;
 	int precio, cantidad;

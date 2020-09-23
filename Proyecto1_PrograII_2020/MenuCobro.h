@@ -12,7 +12,7 @@ public:
 	void invocarMenu();
 private:
 	char mostrarOpciones();
-	string mostrarProductos();
+	void mostrarProductos();
 	void seleccionarProducto();
 	void subMenuCompra(string id);
 	MonederoElectronico* retornarMonedero();
