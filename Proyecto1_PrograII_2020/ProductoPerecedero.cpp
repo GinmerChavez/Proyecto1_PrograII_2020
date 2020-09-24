@@ -9,6 +9,7 @@ string ProductoPerecedero::toString()
 {
 	stringstream s;
 	s << Producto::toString();
+	s << "Consumir preferiblemente antes de: " << fechaDeVencimiento->mostrarFecha() << endl;
 	s << "Precio final: " << this->getPrecio() << endl;
 	return s.str();
 }

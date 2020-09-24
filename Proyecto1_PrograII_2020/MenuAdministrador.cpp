@@ -11,32 +11,41 @@ void MenuAdministrador::invocarMenu()
 	char opcion;
 	do
 	{
-		opcion = mostrarOpciones();
-		switch (opcion)
+		try
 		{
-		case '1':
-			this->insertar();
-			break;
-		case '2':
-			this->agregarProvisiones();
-			break;
-		case '3':
-			this->disminuirProvisiones();
-			break;
-		case '4':
-			this->borrarProducto();
-			break;
-		case '5':
-			this->consultar();
-			break;
-		case '6':
-			this->ingresarDinero();
-			break;
-		case '7':
-			this->retirarDinero();
-			break;
-		default:
-			cerr << "Opcion invalida, digite otra vez" << endl;
+			opcion = mostrarOpciones();
+			switch (opcion)
+			{
+			case '1':
+				this->insertar();
+				break;
+			case '2':
+				this->agregarProvisiones();
+				break;
+			case '3':
+				this->disminuirProvisiones();
+				break;
+			case '4':
+				this->borrarProducto();
+				break;
+			case '5':
+				this->consultar();
+				break;
+			case '6':
+				this->ingresarDinero();
+				break;
+			case '7':
+				this->retirarDinero();
+				break;
+			default:
+				cerr << "Opcion invalida, digite otra vez" << endl;
+			}
+		}
+		catch (exception& e)
+		{
+			cerr << "Ocurrio un problema realizando la accion: ";
+			cerr << e.what() << endl;
+			system("pause");
 		}
 	}
 	while (opcion != opcionSalida);
@@ -90,21 +99,30 @@ void MenuAdministrador::disminuirProvisiones()
 
 void MenuAdministrador::borrarProducto()
 {
-	string id; 
-	cout << "Ingrese el nombre del producto que desea borrar" << endl;
-	cin >> id;
-	this->maquinaAdministradora->borrar(id);
-	system("pause");
+	try
+	{
+		string id;
+		cout << "Ingrese el nombre del producto que desea borrar: " << endl;
+		cin >> id;
+		this->maquinaAdministradora->consultar(id);
+		this->maquinaAdministradora->borrar(id);
+	}
+	catch (exception& e)
+	{
+		cerr << "Ocurrio un problema al tratar de borrar un producto. ";
+		cerr << e.what() << endl;
+		system("pause");
+	}
 }
  
 void MenuAdministrador::consultar() //funciona
 {
-
-	string id;
-	cout << "Ingrese el nombre del producto a consultar" << endl;
-	cin >> id;
-	cout << this->maquinaAdministradora->consultar(id)->toString() << endl;
-	system("pause");
+		string id;
+		cout << "Ingrese el nombre del producto a consultar" << endl;
+		cin >> id;
+		Producto* productoBuscado = this->maquinaAdministradora->consultar(id);
+		cout << productoBuscado->toString() <<endl;
+		system("pause");
 }
 
 void MenuAdministrador::ingresarDinero() //funciona
@@ -113,7 +131,6 @@ void MenuAdministrador::ingresarDinero() //funciona
 	cout << "Cuanto dinero desea ingresar a la maquina?" << endl;
 	cin >> dinero;
 	this->maquinaAdministradora->ingresarDinero(dinero);
-	//system("pause");
 }
 
 void MenuAdministrador::retirarDinero() //funciona
@@ -134,12 +151,12 @@ Producto* MenuAdministrador::crearProducto() //funciona
 	cin >> nombre;
 	cout << "Precio: " << endl;
 	cin >> precio;
-	cout << "Cantidad :" << endl;
+	cout << "Cantidad: " << endl;
 	cin >> cantidad;
 	int opcion;
 	cout << "Digite 1 si desea que el producto sea perecedero o 2 para no perecedero:" << endl;
 	cin >> opcion;
-	if (opcion == 1) //se ocupa manejo de errores para opciones
+	if (opcion == 1) //Se necesita hacer validaciones para enteros
 	{
 		Fecha* fechavencimiento;
 		int dia, mes, anno;
@@ -150,7 +167,7 @@ Producto* MenuAdministrador::crearProducto() //funciona
 		cin >> mes;
 		cout << "Año: " << endl;
 		cin >> anno;
-		fechavencimiento = new Fecha(dia, mes, anno); //hacer error handling para formato de fecha (validacion de enteros)
+		fechavencimiento = new Fecha(dia, mes, anno); //Validar el formato de fecha (validacion de enteros)
 
 		prod = new ProductoPerecedero(nombre, precio, cantidad, fechavencimiento);
 	}

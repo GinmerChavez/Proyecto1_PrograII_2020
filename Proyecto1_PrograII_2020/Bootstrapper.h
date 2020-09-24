@@ -4,9 +4,7 @@
 #include "MenuPrincipal.h"
 #include "Maquina.h"
 #include "MonederoElectronico.h"
-
-#include "Colecciones/IList.h"
-#include "Colecciones/ArrayList.h"
+#include "FabricaDeListas.h"
 
 class Bootstrapper
 {

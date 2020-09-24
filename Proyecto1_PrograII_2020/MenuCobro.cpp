@@ -44,8 +44,7 @@ char MenuCobro::mostrarOpciones()
 
 void MenuCobro::mostrarProductos()
 {
-
-	cout << this->maquinaVendedora->toString() << endl;
+	cout << this->maquinaVendedora->toString() <<endl;
 	system("pause");
 }
 

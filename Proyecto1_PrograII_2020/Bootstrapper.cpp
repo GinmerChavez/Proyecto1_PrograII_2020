@@ -3,20 +3,17 @@
 
 void Bootstrapper::correrAplicacion()
 {
-	IList* lista = new ArrayList(8); // Aqui deberiamos hacer una fabrica de listas??
+	IList* lista = FabricaDeListas::crearLista();	//Patron Simple Factory
 	MonederoElectronico* monedero = new MonederoElectronico();
-	
-	IMaquinaAdministradora* maquinaAdministradora = new Maquina(12345, "Expendedora", monedero, lista);
-	IMaquinaVendedora* maquinaVendedora = new Maquina(12345, "Expendedora", monedero, lista);
-	
-	MenuAdministrador* menuAdministrador = new MenuAdministrador(maquinaAdministradora);
-	MenuCobro* menuCobro = new MenuCobro(maquinaVendedora);
+	Maquina* maquina = new Maquina(12345, "expendedora", monedero, lista);
+
+	MenuAdministrador* menuAdministrador = new MenuAdministrador(maquina);
+	MenuCobro* menuCobro = new MenuCobro(maquina);
 	MenuPrincipal* menuPrincipal = new MenuPrincipal(menuAdministrador, menuCobro);
 
 
 	menuPrincipal->invocarMenu();
-
+	
+	delete maquina;
 	delete menuPrincipal;
-
-	//Faltan destructores
 }

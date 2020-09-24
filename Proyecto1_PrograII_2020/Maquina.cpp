@@ -32,15 +32,18 @@ void Maquina::setNombre(string nombre)
 
 string Maquina::toString()
 {
-    int contador = 0;
-    IIterador* ite = this->productos->obtenerIterador();
     stringstream s;
-    s << "Nombre de la maquina: " << this->nombre << "con identificador: " << this->identificador;
-    s << "Posee la siguiente lista de productos: " << endl;
-    while (ite->haySiguiente())
+    s << "-------------------------------------------------------------------------------------" << endl;
+    s << "La maquina " << this->nombre << " con identificador " << this->identificador;
+    s << " posee la siguiente lista de productos: " << endl;
+    s << "-------------------------------------------------------------------------------------" << endl;
+    if (this->productos->getCantidad() > 0)
     {
-        s << "[" << contador << "]: " << productos->toString() << endl;
-        contador++;
+        s << this->productos->toString() << endl;
+    }
+    else
+    {
+        s << "Oops!, Lo sentimos. La maquina no tiene productos aun. Por favor contacte al administrador." << endl;
     }
     return s.str();
 }
@@ -55,12 +58,14 @@ void Maquina::agregarProvisiones(string idProducto, int cantidad)
     try
     {
         Producto* productoBuscado = this->consultar(idProducto);
-        productoBuscado->setCantidad(cantidad);
+        int cantidadExistente = productoBuscado->getCantidad();
+        productoBuscado->setCantidad(cantidadExistente + cantidad);
     }
     catch (exception& e)
     {
         cerr << "Ocurrio un problema al tratar de agregar provisiones. ";
         cerr << e.what() << endl;
+        system("pause");
     }
 }
 
@@ -69,32 +74,44 @@ void Maquina::disminuirProvisiones(string idProducto, int cantidad)
     try
     {
         Producto* productoBuscado = this->consultar(idProducto);
-        productoBuscado->setCantidad(cantidad);
+        int cantidadExistente = productoBuscado->getCantidad();
+        if (cantidadExistente >= cantidad && cantidadExistente > 0)
+        {
+            productoBuscado->setCantidad(cantidadExistente - cantidad);
+        }
+        else
+        {
+            cout << "No se puede disminuir esta cantidad de provisiones para este producto. ";
+            cout << "La cantidad en existencia de este producto es " << cantidadExistente << endl;
+            system("pause");
+        }
+        
     }
     catch (exception& e)
     {
         cerr << "Ocurrio un problema al tratar de disminuir provisiones. ";
         cerr << e.what() << endl;
+        system("pause");
     }
 }
 
 void Maquina::borrar(string id)
 {
-    try
+    int contador = 0;
+    IIterador* ite = this->productos->obtenerIterador();
+    while (ite->haySiguiente())
     {
-        Producto* productoBuscado = this->consultar(id);
-        if (this->productos->contiene(productoBuscado))
+        Producto* actual = dynamic_cast<Producto*>(ite->actual());
+        if (actual->getNombre() == id)
         {
-            delete productoBuscado;
-            productoBuscado = nullptr;
+            this->productos->borrarEnPosicion(contador);
+            cout << "Producto borrado satisfactoriamente." << endl;
+            system("pause");
+            break;
         }
-        throw invalid_argument("El producto no se encuentra contenido en la maquina.");
+        contador++;
     }
-    catch (exception& e)
-    {
-        cerr << "Ocurrio un problema al tratar de borrar el Producto. ";
-        cerr << e.what() << endl;
-    }
+    delete ite;
 }
 
 Producto* Maquina::consultar(string id)
@@ -116,9 +133,14 @@ Producto* Maquina::consultar(string id)
         }
     }
     delete ite;
-    return resultado;
-
-    throw invalid_argument("El nombre del Producto provisto no se encuentra en la maquina. ");
+    if (resultado)
+    {
+        return resultado;
+    }
+    else
+    {
+        throw invalid_argument("El nombre del Producto provisto no se encuentra en la maquina. ");
+    }
 }
 
 void Maquina::ingresarDinero(int dinero)
