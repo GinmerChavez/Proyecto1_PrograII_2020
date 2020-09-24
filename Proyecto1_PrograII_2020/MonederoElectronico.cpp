@@ -36,7 +36,7 @@ int MonederoElectronico::calculaVueltoMinimo(int vuelto)
 		{
 
 			nDinero -= Monedas[i];
-			this->Vuelto[count] = Monedas[i];
+			this->Vuelto[i] = Monedas[i];
 			count++;
 		}
 
