@@ -59,25 +59,16 @@ void MenuCobro::seleccionarProducto() // hay que hacer excepcion
 		cout << this->maquinaVendedora->mostrarProducto(id)->toString() << endl;
 		char opcion;
 		cout << "Presione 1, si desea confirmar la compra de este producto." << endl;
-		cout << "Presione 2, para salir al menu de cobro." << endl;
+		cout << "Presione cualquier tecla para salir al menu de cobro." << endl;
 		cin >> opcion;
 		const char opcionSalida = '2';
-		do
+		if (opcion == '1')
 		{
-			switch (opcion)
-			{
-			case '1':
-				system("cls");
-				this->subMenuCompra(id);
-				cout << "Producto comprado satisfactoriamente.";
-				break;
-			case opcionSalida:
-				break;
-			default:
-				cerr << "Opcion invalida, digite otra vez" << endl;
-			}
+			system("cls");
+			this->subMenuCompra(id);
+		}
 
-		} while (opcion != opcionSalida);
+	
 	}
 	catch (exception& e)
 	{
@@ -86,7 +77,7 @@ void MenuCobro::seleccionarProducto() // hay que hacer excepcion
 	}
 }
 
-void MenuCobro::subMenuCompra(string id) //si tiene que retornar
+void MenuCobro::subMenuCompra(string id) 
 {
 	int monto, cantidad, precio, vuelto;
 	cout << "Cuantas unidades desea comprar?" << endl;
