@@ -178,7 +178,7 @@ string Maquina::realizarCompra(string id, int cantidad, int montoPago)
                     int vuelto = montoPago - productoBuscado->getPrecio()*cantidad;
                     this->disminuirProvisiones(id, cantidad);
                     this->monedero->setDinero(dineroActual + montoPago);
-                    s << this->monedero->desgloceVuelto(vuelto) << endl;
+                    //s << this->monedero->desgloceVuelto(vuelto) << endl;
                     s << "La compra se ha efectuado satisfactoriamente." << endl;
 
 

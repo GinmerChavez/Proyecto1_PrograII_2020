@@ -4,43 +4,25 @@ MonederoElectronico::MonederoElectronico()
 {
 	this->dinero = 0;
 	int monedaMenor = Monedas[0]; //la menor denominacion
-	this->Vuelto = new int[100];
-	for (int i = 0; i < 100; i++)
-	{
-		this->Vuelto[i] = 0;
-	}
 
 }
 
-MonederoElectronico::MonederoElectronico(int dinero)
-{
-	this->dinero = dinero;
-	int monedaMenor = Monedas[0]; //la menor denominacion
-	int mayorVueltoPosible = round(this->dinero / monedaMenor);
-	this->Vuelto = new int[mayorVueltoPosible];
-	for (int i = 0; i < mayorVueltoPosible; i++)
-	{
-		this->Vuelto[i] = 0;
-	}
-}
 
 int MonederoElectronico::calculaVueltoMinimo(int vuelto)
 {
 	
 	int count = 0;
-	int size = sizeof(Monedas) / sizeof(Monedas[0]);
+	int size = sizeof(this->Monedas) / sizeof(this->Monedas[0]);
+	int nDinero = vuelto;
 	for (int i = size-1; i >=0; i--)
 	{
-		int nDinero = vuelto;
-		while (nDinero >= Monedas[i])
+		while (nDinero >= this->Monedas[i])
 		{
+			nDinero -= this->Monedas[i];
+			Vuelto.push_back(this->Monedas[i]);
 
-			nDinero -= Monedas[i];
-			this->Vuelto[i] = Monedas[i];
-			count++;
 		}
-
-		
+			count++;
 	}
 	return count;
 }
@@ -50,10 +32,19 @@ string MonederoElectronico::desgloceVuelto(int vuelto)
 	int numeroMonedas = this->calculaVueltoMinimo(vuelto);
 	stringstream s;
 	s << "El cambio es: " << endl;
-	for (int i = 0; i < numeroMonedas; i++)
+
+		for (int i = 0; i < Vuelto.size() ; i++)
 	{
-		s << this->Vuelto[i] << endl;
+			if (this->Vuelto[i] == 0)
+			{
+				s << "";
+				continue;
+			}
+			s << this->Vuelto[i] << endl;
 	}
+
+
+
 	return s.str();
 }
 
@@ -69,5 +60,5 @@ int MonederoElectronico::getDinero()
 
 MonederoElectronico::~MonederoElectronico()
 {
-	delete this->Vuelto;
+
 }

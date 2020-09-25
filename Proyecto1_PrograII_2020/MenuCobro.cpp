@@ -86,7 +86,7 @@ void MenuCobro::seleccionarProducto() // hay que hacer excepcion
 	}
 }
 
-void MenuCobro::subMenuCompra(string id)
+void MenuCobro::subMenuCompra(string id) //si tiene que retornar
 {
 	int monto, cantidad, precio, vuelto;
 	cout << "Cuantas unidades desea comprar?" << endl;
@@ -101,8 +101,9 @@ void MenuCobro::subMenuCompra(string id)
 		vuelto = monto - precio * cantidad;
 		cout << "Se entrega " << cantidad << " unidades de " << this->maquinaVendedora->mostrarProducto(id)->getNombre() << endl;
 		cout << "Vuelto: " << vuelto << endl;
-		cout << "La compra se efectuo exitosamente" <<endl;
 		cout << this->retornarMonedero()->desgloceVuelto(vuelto);
+		cout << "La compra se efectuo exitosamente" <<endl;
+		
 		system("pause");
 	}
 	else
