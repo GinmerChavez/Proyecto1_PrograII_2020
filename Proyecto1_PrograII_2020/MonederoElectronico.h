@@ -18,6 +18,7 @@ public:
 	string desgloceVuelto(int vuelto);
 	void setDinero(int dinero);
 	int getDinero();
+	void reiniciaVector();
 	~MonederoElectronico();
 
 };

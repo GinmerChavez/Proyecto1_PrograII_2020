@@ -2,9 +2,16 @@
 
 Fecha::Fecha(unsigned int dd, unsigned int mm, int aaaa)
 {
-	dia = dd;
-	mes = mm;
-	anno = aaaa;
+	if (esCorrecta(dd, mm, aaaa))
+	{
+		dia = dd;
+		mes = mm;
+		anno = aaaa;
+	}
+	else
+	{
+		throw invalid_argument("La fecha ingresada no es valida o no cumple con el formato indicado. Utilice dos digitos para el dia, dos digitos para el mes y cuatro para el año.");
+	}
 }
 
 

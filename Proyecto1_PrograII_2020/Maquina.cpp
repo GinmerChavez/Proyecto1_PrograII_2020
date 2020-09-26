@@ -180,18 +180,18 @@ string Maquina::realizarCompra(string id, int cantidad, int montoPago)
                     this->monedero->setDinero(dineroActual + montoPago);
                     //s << this->monedero->desgloceVuelto(vuelto) << endl;
                     s << "La compra se ha efectuado satisfactoriamente." << endl;
-
-
-                  
+                    system("pause");                  
                 }
                 else
                 {
                     cout << "El monto de dinero recibido es insuficiente para realizar la compra. " << endl;
+                    system("pause");
                 }
             }
             else
             {
                 cout << "La cantidad de producto que se desea comprar excede la cantidad disponible en la maquina." << endl;
+                system("pause");
             }
         }
     }
@@ -215,6 +215,7 @@ Producto* Maquina::mostrarProducto(string id)
     {
         cerr << "Ocurrio un problema al tratar de mostrar un producto." << endl;
         cerr << e.what() << endl;
+        system("pause");
     }
     throw invalid_argument("Ocurrio un problema al mostrar un producto.");
 }

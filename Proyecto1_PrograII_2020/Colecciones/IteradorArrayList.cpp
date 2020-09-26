@@ -32,3 +32,4 @@ ObjetoBase* IteradorArrayList::actual()
 	}
 	return nullptr;
 }
+

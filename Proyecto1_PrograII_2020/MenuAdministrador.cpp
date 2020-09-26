@@ -72,7 +72,14 @@ char MenuAdministrador::mostrarOpciones()
 void MenuAdministrador::insertar() //funciona
 {
 	Producto* producto = crearProducto();
-	this->maquinaAdministradora->insertar(producto);
+	if (producto)
+	{
+		this->maquinaAdministradora->insertar(producto);
+	}
+	else
+	{
+		throw invalid_argument("Ocurrio un problema al tratar de insertar un producto.");
+	}
 }
 
 void MenuAdministrador::agregarProvisiones()
@@ -158,26 +165,43 @@ Producto* MenuAdministrador::crearProducto() //funciona
 	cin >> opcion;
 	if (opcion == 1) //Se necesita hacer validaciones para enteros
 	{
-		Fecha* fechavencimiento;
-		int dia, mes, anno;
-		cout << "Digite fecha de vencimiento: " << endl;
-		cout << "Dia: " << endl;
-		cin >> dia;
-		cout << "Mes" << endl;
-		cin >> mes;
-		cout << "Año: " << endl;
-		cin >> anno;
-		fechavencimiento = new Fecha(dia, mes, anno); //Validar el formato de fecha (validacion de enteros)
-
-		prod = new ProductoPerecedero(nombre, precio, cantidad, fechavencimiento);
+		try
+		{
+			Fecha* fechavencimiento;
+			int dia, mes, anno;
+			cout << "Digite fecha de vencimiento: " << endl;
+			cout << "Dia(dd): " << endl;
+			cin >> dia;
+			cout << "Mes(mm)" << endl;
+			cin >> mes;
+			cout << "Año(aaaa): " << endl;
+			cin >> anno;
+			fechavencimiento = new Fecha(dia, mes, anno);
+			if (fechavencimiento)
+			{
+				prod = new ProductoPerecedero(nombre, precio, cantidad, fechavencimiento);
+			}
+		}
+		catch (exception& e)
+		{
+			cerr << "Ocurrio un problema al tratar de crear un producto: ";
+			cerr << e.what() << endl;
+			system("pause");
+		}
 	}
 	if (opcion == 2)
 	{
 		int porcentajeDescuento;
 		cout << "Digite porcentaje de descuento: " << endl;
 		cin >> porcentajeDescuento;
-
-		prod = new ProductoNoPerecedero(nombre, precio, cantidad, porcentajeDescuento);
+		if (porcentajeDescuento < 100)
+		{
+			prod = new ProductoNoPerecedero(nombre, precio, cantidad, porcentajeDescuento);
+		}
+		else
+		{
+			throw invalid_argument("El porcentaje de descuento ingresado no es permitido.");
+		}
 		
 	}
 	return prod;

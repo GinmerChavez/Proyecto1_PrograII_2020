@@ -4,7 +4,12 @@ MonederoElectronico::MonederoElectronico()
 {
 	this->dinero = 0;
 	int monedaMenor = Monedas[0]; //la menor denominacion
+}
 
+MonederoElectronico::MonederoElectronico(int dinero)
+{
+	this->dinero = dinero;
+	int monedaMenor = Monedas[0];
 }
 
 
@@ -20,9 +25,8 @@ int MonederoElectronico::calculaVueltoMinimo(int vuelto)
 		{
 			nDinero -= this->Monedas[i];
 			Vuelto.push_back(this->Monedas[i]);
-
 		}
-			count++;
+		count++;
 	}
 	return count;
 }
@@ -33,18 +37,16 @@ string MonederoElectronico::desgloceVuelto(int vuelto)
 	stringstream s;
 	s << "El cambio es: " << endl;
 
-		for (int i = 0; i < Vuelto.size() ; i++)
+	for (int i = 0; i < Vuelto.size(); i++)
 	{
-			if (this->Vuelto[i] == 0)
-			{
-				s << "";
-				continue;
-			}
-			s << this->Vuelto[i] << endl;
+		if (this->Vuelto[i] == 0)
+		{
+			s << "";
+			continue;
+		}
+		s << this->Vuelto[i] << endl;
 	}
-
-
-
+	this->reiniciaVector();
 	return s.str();
 }
 
@@ -56,6 +58,11 @@ void MonederoElectronico::setDinero(int dinero)
 int MonederoElectronico::getDinero()
 {
 	return dinero;
+}
+
+void MonederoElectronico::reiniciaVector()
+{
+	this->Vuelto.clear();
 }
 
 MonederoElectronico::~MonederoElectronico()
