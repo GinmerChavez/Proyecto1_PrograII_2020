@@ -3,6 +3,7 @@
 #include"Producto.h"
 #include"ProductoNoPerecedero.h"
 #include"ProductoPerecedero.h"
+#include "ValidationTools.h"
 
 class MenuAdministrador
 {

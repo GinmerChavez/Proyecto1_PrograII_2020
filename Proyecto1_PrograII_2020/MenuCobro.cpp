@@ -57,13 +57,13 @@ void MenuCobro::mostrarProductos()
 	system("pause");
 }
 
-void MenuCobro::seleccionarProducto() // hay que hacer excepcion 
+void MenuCobro::seleccionarProducto()
 {
 	try
 	{
 		string id;
 		cout << "Ingrese el nombre del producto que desea escoger: " << endl;
-		cin >> id;
+		id = leerCadena();
 		cout << endl << this->maquinaVendedora->mostrarProducto(id)->toString() << endl;
 		char opcion;
 		cout << "Presione 1, si desea confirmar la compra de este producto." << endl;
@@ -91,22 +91,31 @@ void MenuCobro::subMenuCompra(string id)
 		int cantidadEnExistencia = this->maquinaVendedora->mostrarProducto(id)->getCantidad();
 		int monto, cantidad, precio, vuelto;
 		cout << "Cuantas unidades del producto desea comprar?" << endl;
-		cin >> cantidad;
+		cantidad = leerEntero();
 		if (cantidad <= cantidadEnExistencia)
 		{
 			cout << "Digite el monto con el que desea pagar su compra" << endl;
-			cin >> monto;
+			monto = leerEntero();
 			precio = this->maquinaVendedora->mostrarProducto(id)->getPrecio();
 			int total = precio * cantidad;
 			if (monto >= total)
 			{
-				this->maquinaVendedora->realizarCompra(id, cantidad, monto);
 				vuelto = monto - precio * cantidad;
-				cout << "Se entrega " << cantidad << " unidad(es) de " << this->maquinaVendedora->mostrarProducto(id)->getNombre() << endl;
-				cout << "Vuelto: " << vuelto << endl;
-				cout << this->retornarMonedero()->desgloceVuelto(vuelto);
-				cout << "La compra se efectuo exitosamente." << endl;
-				system("pause");
+				if (vuelto <= this->maquinaVendedora->retornarMonedero()->getDinero())
+				{
+					this->maquinaVendedora->realizarCompra(id, cantidad, monto);
+					cout << "Se entrega " << cantidad << " unidad(es) de " << this->maquinaVendedora->mostrarProducto(id)->getNombre() << endl;
+					cout << "Vuelto: " << vuelto << endl;
+					cout << this->retornarMonedero()->desgloceVuelto(vuelto);
+					cout << "La compra se efectuo exitosamente." << endl;
+					system("pause");
+				}
+				else
+				{
+					cout << "Lo sentimos, la maquina no cuenta con el dinero suficiente para dispensar su vuelto." << endl;
+					cout << "Le rogamos se ponga en contacto con el administrador. Gracias!." << endl;
+					system("pause");
+				}
 			}
 			else
 			{

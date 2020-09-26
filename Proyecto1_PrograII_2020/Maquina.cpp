@@ -163,7 +163,6 @@ void Maquina::retirarDinero(int cantidad)
 
 string Maquina::realizarCompra(string id, int cantidad, int montoPago)
 {
-    //Aqui hace falta una validacion para entero y una validacion para string
     stringstream s;
     try
     {
@@ -178,8 +177,6 @@ string Maquina::realizarCompra(string id, int cantidad, int montoPago)
                     int vuelto = montoPago - productoBuscado->getPrecio()*cantidad;
                     this->disminuirProvisiones(id, cantidad);
                     this->monedero->setDinero(dineroActual + montoPago);
-                    //s << this->monedero->desgloceVuelto(vuelto) << endl;
-                    s << "La compra se ha efectuado satisfactoriamente." << endl;
                     system("pause");                  
                 }
                 else

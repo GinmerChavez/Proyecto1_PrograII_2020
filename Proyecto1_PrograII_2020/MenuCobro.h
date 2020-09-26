@@ -1,6 +1,7 @@
 #pragma once
 #include"IMaquinaVendedora.h"
 #include "MonederoElectronico.h"
+#include "ValidationTools.h"
 
 class MenuCobro
 {

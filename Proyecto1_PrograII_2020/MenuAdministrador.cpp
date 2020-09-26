@@ -87,9 +87,9 @@ void MenuAdministrador::agregarProvisiones()
 	string id;
 	int provisiones;
 	cout << "Ingrese el nombre del producto al cual desea agregarle provisiones" << endl;
-	cin >> id;
+	id = leerCadena();
 	cout << "Ingrese la cantidad de provisiones que desea agregar" << endl;
-	cin >> provisiones;
+	provisiones = leerEntero();
 	this->maquinaAdministradora->agregarProvisiones(id, provisiones);
 }
 
@@ -98,9 +98,9 @@ void MenuAdministrador::disminuirProvisiones()
 	string id;
 	int provisiones;
 	cout << "Ingrese el nombre del producto al cual desea quitarle provisiones" << endl;
-	cin >> id;
+	id = leerCadena();
 	cout << "Ingrese la cantidad de provisiones que desea quitar" << endl;
-	cin >> provisiones;
+	provisiones = leerEntero();
 	this->maquinaAdministradora->disminuirProvisiones(id, provisiones);
 }
 
@@ -110,7 +110,7 @@ void MenuAdministrador::borrarProducto()
 	{
 		string id;
 		cout << "Ingrese el nombre del producto que desea borrar: " << endl;
-		cin >> id;
+		id = leerCadena();
 		this->maquinaAdministradora->consultar(id);
 		this->maquinaAdministradora->borrar(id);
 	}
@@ -126,7 +126,7 @@ void MenuAdministrador::consultar() //funciona
 {
 		string id;
 		cout << "Ingrese el nombre del producto a consultar" << endl;
-		cin >> id;
+		id = leerCadena();
 		Producto* productoBuscado = this->maquinaAdministradora->consultar(id);
 		cout << productoBuscado->toString() <<endl;
 		system("pause");
@@ -136,7 +136,7 @@ void MenuAdministrador::ingresarDinero() //funciona
 {
 	int dinero = 0;
 	cout << "Cuanto dinero desea ingresar a la maquina?" << endl;
-	cin >> dinero;
+	dinero = leerEntero();
 	this->maquinaAdministradora->ingresarDinero(dinero);
 }
 
@@ -144,7 +144,7 @@ void MenuAdministrador::retirarDinero() //funciona
 {
 	int dinero = 0;
 	cout << "Cuanto dinero desea retirar de la maquina?" << endl;
-	cin >> dinero;
+	dinero = leerEntero();
 	this->maquinaAdministradora->retirarDinero(dinero);
 	system("pause");
 }
@@ -154,16 +154,16 @@ Producto* MenuAdministrador::crearProducto() //funciona
 	string nombre;
 	int precio, cantidad;
 	Producto* prod = nullptr;
-	cout << "Nombre: " << endl;
-	cin >> nombre;
+	cout << "Nombre:" << endl;
+	nombre = leerCadena();
 	cout << "Precio: " << endl;
-	cin >> precio;
+	precio = leerEntero();
 	cout << "Cantidad: " << endl;
-	cin >> cantidad;
+	cantidad = leerEntero();
 	int opcion;
 	cout << "Digite 1 si desea que el producto sea perecedero o 2 para no perecedero:" << endl;
-	cin >> opcion;
-	if (opcion == 1) //Se necesita hacer validaciones para enteros
+	opcion = leerEntero();
+	if (opcion == 1) 
 	{
 		try
 		{
@@ -171,11 +171,11 @@ Producto* MenuAdministrador::crearProducto() //funciona
 			int dia, mes, anno;
 			cout << "Digite fecha de vencimiento: " << endl;
 			cout << "Dia(dd): " << endl;
-			cin >> dia;
+			dia = leerEntero();
 			cout << "Mes(mm)" << endl;
-			cin >> mes;
+			mes = leerEntero();
 			cout << "Año(aaaa): " << endl;
-			cin >> anno;
+			anno = leerEntero();
 			fechavencimiento = new Fecha(dia, mes, anno);
 			if (fechavencimiento)
 			{
@@ -193,7 +193,7 @@ Producto* MenuAdministrador::crearProducto() //funciona
 	{
 		int porcentajeDescuento;
 		cout << "Digite porcentaje de descuento: " << endl;
-		cin >> porcentajeDescuento;
+		porcentajeDescuento = leerEntero();
 		if (porcentajeDescuento < 100)
 		{
 			prod = new ProductoNoPerecedero(nombre, precio, cantidad, porcentajeDescuento);

@@ -3,7 +3,8 @@
 string leerCadena()
 {
 	string x;
-	getline(std::cin, x);
+	cin.ignore(1024, '\n');
+	getline(cin, x);
 	return x;
 }
 
@@ -19,7 +20,7 @@ int leerEntero()
 			return n;
 		}
 		else {
-			cerr << "Valor incorrecto.. digita UN NUMERO" << endl;
+			cerr << "Valor incorrecto..Por favor, ingrese un numero entero." << endl;
 			cin.clear();
 			cin.ignore(1024, '\n');
 		}
